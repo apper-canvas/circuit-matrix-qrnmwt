@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Input from "@/components/atoms/Input";
+import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
-import Icon from "@/components/atoms/Icon";
+import Input from "@/components/atoms/Input";
 const SearchBar = ({ onSearch, placeholder = "Search tasks...", className = '' }) => {
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -48,7 +48,7 @@ const SearchBar = ({ onSearch, placeholder = "Search tasks...", className = '' }
 onClick={handleClear}
               className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
             >
-              <Icon name="X" className="w-4 h-4" />
+              <ApperIcon name="X" className="w-4 h-4" />
             </button>
           )}
         </div>
