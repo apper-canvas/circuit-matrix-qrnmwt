@@ -27,15 +27,15 @@ const TaskModal = ({ task, isOpen, onClose, onUpdate, onDelete }) => {
     }
   }, [isOpen, task]);
 
-  const loadTaskData = async () => {
+const loadTaskData = async () => {
     setLoading(true);
     try {
       const [commentsResult, usersResult] = await Promise.all([
         commentService.getByTaskId(task.Id),
         userService.getAll()
       ]);
-      setComments(commentsResult);
-      setUsers(usersResult);
+      setComments(commentsResult || []);
+      setUsers(usersResult || []);
     } catch (err) {
       toast.error('Failed to load task data');
     } finally {
@@ -43,15 +43,16 @@ const TaskModal = ({ task, isOpen, onClose, onUpdate, onDelete }) => {
     }
   };
 
-  const handleSave = async () => {
+const handleSave = async () => {
     setSaving(true);
     try {
       const updatedTask = await taskService.update(task.Id, editData);
-      onUpdate && onUpdate(updatedTask);
-      setEditMode(false);
-      toast.success('Task updated successfully');
+      if (updatedTask) {
+        onUpdate && onUpdate(updatedTask);
+        setEditMode(false);
+      }
     } catch (err) {
-      toast.error('Failed to update task');
+      // Error handling is done in the service
     } finally {
       setSaving(false);
     }

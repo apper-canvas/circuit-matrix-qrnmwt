@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSelector } from 'react-redux';
 import ApperIcon from './components/ApperIcon';
 import { routeArray } from './config/routes';
 import ProjectSwitcher from './components/organisms/ProjectSwitcher';
 import QuickAddTask from './components/molecules/QuickAddTask';
-
+import { AuthContext } from './App';
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  const { logout } = useContext(AuthContext);
+  const { user } = useSelector((state) => state.user);
 
   const sidebarVariants = {
     open: { x: 0 },
@@ -111,15 +114,27 @@ className={({ isActive }) =>
                 {routeArray.find(route => route.path === location.pathname)?.label || 'FlowBoard Pro'}
               </h1>
             </div>
-            <div className="flex items-center space-x-4">
+<div className="flex items-center space-x-4">
               <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
                 <ApperIcon name="Search" className="w-5 h-5 text-gray-600" />
               </button>
               <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
                 <ApperIcon name="Bell" className="w-5 h-5 text-gray-600" />
               </button>
-              <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
-                <ApperIcon name="User" className="w-4 h-4 text-white" />
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                  <ApperIcon name="User" className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-sm font-medium text-gray-700 hidden md:block">
+                  {user?.firstName || 'User'}
+                </span>
+                <button
+                  onClick={logout}
+                  className="p-1.5 rounded-lg hover:bg-gray-100 transition-colors text-gray-600 hover:text-gray-900"
+                  title="Logout"
+                >
+                  <ApperIcon name="LogOut" className="w-4 h-4" />
+                </button>
               </div>
             </div>
           </div>

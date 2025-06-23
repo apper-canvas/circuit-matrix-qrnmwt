@@ -70,8 +70,8 @@ const TaskCard = ({
       </div>
 
       {/* Task Title */}
-      <h3 className="font-medium text-gray-900 mb-2 line-clamp-2">
-        {task.title}
+<h3 className="font-medium text-gray-900 mb-2 line-clamp-2">
+        {task.title || task.Name}
       </h3>
 
       {/* Task Description */}
@@ -100,13 +100,13 @@ const TaskCard = ({
           )}
         </div>
 
-        {task.dueDate && (
+{(task.dueDate || task.due_date) && (
           <div className={`flex items-center space-x-1 text-xs ${
             isOverdue ? 'text-error' : 'text-gray-500'
           }`}>
             <ApperIcon name="Calendar" className="w-4 h-4" />
             <span>
-              {format(new Date(task.dueDate), 'MMM d')}
+              {format(new Date(task.dueDate || task.due_date), 'MMM d')}
             </span>
           </div>
         )}

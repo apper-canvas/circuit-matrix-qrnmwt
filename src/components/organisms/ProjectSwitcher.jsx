@@ -21,7 +21,7 @@ const ProjectSwitcher = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await projectService.getAll();
+const result = await projectService.getAll();
       setProjects(result);
       if (result.length > 0 && !currentProject) {
         setCurrentProject(result[0]);

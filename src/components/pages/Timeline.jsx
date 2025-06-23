@@ -31,7 +31,7 @@ const Timeline = () => {
     }
   }, [currentProject]);
 
-  const loadData = async () => {
+const loadData = async () => {
     setLoading(true);
     setError(null);
     try {
@@ -39,9 +39,9 @@ const Timeline = () => {
         projectService.getAll(),
         userService.getAll()
       ]);
-      setProjects(projectsResult);
-      setUsers(usersResult);
-      if (projectsResult.length > 0) {
+      setProjects(projectsResult || []);
+      setUsers(usersResult || []);
+      if (projectsResult && projectsResult.length > 0) {
         setCurrentProject(projectsResult[0]);
       }
     } catch (err) {
@@ -52,12 +52,12 @@ const Timeline = () => {
     }
   };
 
-  const loadProjectTasks = async () => {
+const loadProjectTasks = async () => {
     if (!currentProject) return;
     
     try {
       const tasksResult = await taskService.getByProjectId(currentProject.Id);
-      setTasks(tasksResult.filter(task => task.dueDate)); // Only show tasks with due dates
+      setTasks((tasksResult || []).filter(task => task.due_date || task.dueDate)); // Only show tasks with due dates
     } catch (err) {
       toast.error('Failed to load project tasks');
     }

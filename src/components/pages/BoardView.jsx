@@ -27,16 +27,16 @@ const BoardView = () => {
     loadInitialData();
   }, []);
 
-  const loadInitialData = async () => {
+const loadInitialData = async () => {
     setLoading(true);
     try {
       const [projectsResult, usersResult] = await Promise.all([
         projectService.getAll(),
         userService.getAll()
       ]);
-      setProjects(projectsResult);
-      setUsers(usersResult);
-      if (projectsResult.length > 0) {
+      setProjects(projectsResult || []);
+      setUsers(usersResult || []);
+      if (projectsResult && projectsResult.length > 0) {
         setCurrentProject(projectsResult[0]);
       }
     } catch (err) {
