@@ -1,0 +1,37 @@
+[
+  {
+    "Id": 1,
+    "taskId": 1,
+    "userId": 2,
+    "content": "Great progress on the wireframes! The hero section layout looks clean and professional.",
+    "createdAt": "2024-01-20T10:30:00Z"
+  },
+  {
+    "Id": 2,
+    "taskId": 1,
+    "userId": 3,
+    "content": "Could we add a testimonial section below the hero? It would help with social proof.",
+    "createdAt": "2024-01-20T14:15:00Z"
+  },
+  {
+    "Id": 3,
+    "taskId": 3,
+    "userId": 1,
+    "content": "Found several opportunities for improvement. The meta descriptions need work.",
+    "createdAt": "2024-01-22T16:45:00Z"
+  },
+  {
+    "Id": 4,
+    "taskId": 5,
+    "userId": 3,
+    "content": "Make sure to implement rate limiting for the authentication endpoints.",
+    "createdAt": "2024-01-23T09:20:00Z"
+  },
+  {
+    "Id": 5,
+    "taskId": 7,
+    "userId": 4,
+    "content": "I've prepared some product images that we can use for the social media posts.",
+    "createdAt": "2024-01-24T11:30:00Z"
+  }
+]

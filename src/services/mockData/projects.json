@@ -1,0 +1,42 @@
+[
+  {
+    "Id": 1,
+    "name": "Website Redesign",
+    "description": "Complete overhaul of company website with modern design and improved UX",
+    "columns": [
+      { "id": "todo", "title": "To Do", "color": "#6B7280" },
+      { "id": "in-progress", "title": "In Progress", "color": "#F59E0B" },
+      { "id": "review", "title": "Review", "color": "#3B82F6" },
+      { "id": "done", "title": "Done", "color": "#10B981" }
+    ],
+    "createdAt": "2024-01-15T08:00:00Z",
+    "updatedAt": "2024-01-20T16:30:00Z"
+  },
+  {
+    "Id": 2,
+    "name": "Mobile App Development",
+    "description": "Native iOS and Android app for customer engagement",
+    "columns": [
+      { "id": "backlog", "title": "Backlog", "color": "#6B7280" },
+      { "id": "design", "title": "Design", "color": "#EC4899" },
+      { "id": "development", "title": "Development", "color": "#F59E0B" },
+      { "id": "testing", "title": "Testing", "color": "#3B82F6" },
+      { "id": "deployed", "title": "Deployed", "color": "#10B981" }
+    ],
+    "createdAt": "2024-01-10T09:00:00Z",
+    "updatedAt": "2024-01-22T14:45:00Z"
+  },
+  {
+    "Id": 3,
+    "name": "Marketing Campaign Q1",
+    "description": "Comprehensive marketing strategy for Q1 product launch",
+    "columns": [
+      { "id": "ideas", "title": "Ideas", "color": "#6B7280" },
+      { "id": "planning", "title": "Planning", "color": "#F59E0B" },
+      { "id": "execution", "title": "Execution", "color": "#3B82F6" },
+      { "id": "completed", "title": "Completed", "color": "#10B981" }
+    ],
+    "createdAt": "2024-01-12T10:00:00Z",
+    "updatedAt": "2024-01-25T11:20:00Z"
+  }
+]
