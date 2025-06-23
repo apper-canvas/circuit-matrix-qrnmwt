@@ -1,0 +1,5 @@
+packages:
+  - '.'
+
+# Optional: Configure pnpm settings
+# strictPeerDependencies: false  # Uncomment if you need to bypass peer dependency checks
