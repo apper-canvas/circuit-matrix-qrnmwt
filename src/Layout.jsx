@@ -74,11 +74,11 @@ const Layout = () => {
                 key={route.id}
                 to={route.path}
                 onClick={() => setSidebarOpen(false)}
-                className={({ isActive }) =>
+className={({ isActive }) =>
                   `flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     isActive
                       ? 'bg-primary text-white shadow-md'
-                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                      : 'text-black hover:bg-gray-100 hover:text-black'
                   }`
                 }
               >
