@@ -122,7 +122,7 @@ const KanbanBoard = ({ project, onTaskClick, onAddTask }) => {
     );
   }
 
-  if (!project) {
+if (!project) {
     return (
       <EmptyState
         title="No project selected"
@@ -131,11 +131,11 @@ const KanbanBoard = ({ project, onTaskClick, onAddTask }) => {
       />
     );
   }
-}
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 h-full">
+        {(() => {
           // Handle project.columns which might be a string, null, or undefined
           let columnsArray = [];
           
@@ -251,9 +251,10 @@ const KanbanBoard = ({ project, onTaskClick, onAddTask }) => {
                     )}
                   </div>
                 )}
-              </Droppable>
+</Droppable>
             </motion.div>
-);
+            );
+          });
         })()}
       </div>
     </DragDropContext>
