@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "react-toastify";
-import TaskCard from "@/components/molecules/TaskCard";
-import Button from "@/components/atoms/Button";
-import ApperIcon from "@/components/ApperIcon";
-import SkeletonLoader from "@/components/atoms/SkeletonLoader";
-import EmptyState from "@/components/molecules/EmptyState";
-import { taskService } from "@/services/api/taskService";
 import { userService } from "@/services/api/userService";
+import { taskService } from "@/services/api/taskService";
+import ApperIcon from "@/components/ApperIcon";
+import EmptyState from "@/components/molecules/EmptyState";
+import TaskCard from "@/components/molecules/TaskCard";
+import SkeletonLoader from "@/components/atoms/SkeletonLoader";
+import Button from "@/components/atoms/Button";
 const KanbanBoard = ({ project, onTaskClick, onAddTask }) => {
   const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
@@ -131,11 +131,11 @@ const KanbanBoard = ({ project, onTaskClick, onAddTask }) => {
       />
     );
   }
+}
 
-return (
+  return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 h-full">
-        {(() => {
           // Handle project.columns which might be a string, null, or undefined
           let columnsArray = [];
           
@@ -253,8 +253,8 @@ return (
                 )}
               </Droppable>
             </motion.div>
-          );
-        })}
+);
+        })()}
       </div>
     </DragDropContext>
   );
