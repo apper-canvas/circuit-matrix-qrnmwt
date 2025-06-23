@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react';
-import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
-import { motion, AnimatePresence } from 'framer-motion';
-import { toast } from 'react-toastify';
-import TaskCard from '../molecules/TaskCard';
-import Button from '../atoms/Button';
-import ApperIcon from '../ApperIcon';
-import SkeletonLoader from '../atoms/SkeletonLoader';
-import EmptyState from '../molecules/EmptyState';
-import { taskService } from '../../services/api/taskService';
-import { userService } from '../../services/api/userService';
-
+import React, { useEffect, useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
+import { AnimatePresence, motion } from "framer-motion";
+import { toast } from "react-toastify";
+import TaskCard from "@/components/molecules/TaskCard";
+import Button from "@/components/atoms/Button";
+import ApperIcon from "@/components/ApperIcon";
+import SkeletonLoader from "@/components/atoms/SkeletonLoader";
+import EmptyState from "@/components/molecules/EmptyState";
+import { taskService } from "@/services/api/taskService";
+import { userService } from "@/services/api/userService";
 const KanbanBoard = ({ project, onTaskClick, onAddTask }) => {
   const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
@@ -133,13 +132,42 @@ const KanbanBoard = ({ project, onTaskClick, onAddTask }) => {
     );
   }
 
-  return (
+return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 h-full">
-        {project.columns.map((column, index) => {
-          const columnTasks = getTasksForColumn(column.id);
+        {(() => {
+          // Handle project.columns which might be a string, null, or undefined
+          let columnsArray = [];
           
-          return (
+          if (project && project.columns) {
+            try {
+              // If columns is a string, try to parse it as JSON
+              if (typeof project.columns === 'string') {
+                columnsArray = JSON.parse(project.columns);
+              } else if (Array.isArray(project.columns)) {
+                columnsArray = project.columns;
+              }
+            } catch (error) {
+              console.warn('Failed to parse project columns:', error);
+              // Fall back to default columns
+              columnsArray = [];
+            }
+          }
+          
+          // If no valid columns found, use default columns
+          if (!Array.isArray(columnsArray) || columnsArray.length === 0) {
+            columnsArray = [
+              { id: 'todo', title: 'To Do', color: '#6B7280' },
+              { id: 'in-progress', title: 'In Progress', color: '#F59E0B' },
+              { id: 'review', title: 'Review', color: '#3B82F6' },
+              { id: 'done', title: 'Done', color: '#10B981' }
+            ];
+          }
+          
+          return columnsArray.map((column, index) => {
+            const columnTasks = getTasksForColumn(column.id);
+            
+            return (
             <motion.div
               key={column.id}
               variants={columnVariants}
